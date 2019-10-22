@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import { withTracker } from 'meteor/react-meteor-data';
+import { Meteor } from 'meteor/meteor';
+
+import { Eits } from '../api/eits';
 
 const TableHeader = () =>{
   return (
@@ -33,7 +37,7 @@ const TableBody = props => {
               <td>{row.area}</td>
               <td>{row.fact}</td>
               <td>
-                  <button className="btn btn-danger" onClick = {()=> props.removeEIT(index)}>Delete</button>&nbsp;
+                  <button className="btn btn-danger" onClick = {()=> Meteor.call('eits.remove', row._id)}>Delete</button>&nbsp;
                   <button className="btn btn-info" onClick = {()=> props.editEIT(index)}>Edit </button>
               </td>
           </tr>
@@ -50,9 +54,15 @@ class TABLE extends Component{
     return(
       <table className="table">
         <TableHeader />
-        <TableBody eitData={eitData} removeEIT={removeEIT} />
+        <TableBody eitData={eitData} />
       </table>
     )
   }
 }
-export default TABLE
+
+export default withTracker(props => {
+  return {
+    eitData: Eits.find({}).fetch()
+  }
+
+})(TABLE);

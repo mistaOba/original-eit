@@ -1,23 +1,26 @@
 import React, {Component} from 'react';
+import ReactDOM from 'react-dom';
 import { withTracker } from 'meteor/react-meteor-data';
+import { Meteor } from 'meteor/meteor';
 import FORM from './Form.jsx';
 import TABLE from './Table.jsx';
+import EIT from './EITs.jsx'
+import { Eits } from '../api/eits.js';
 
 class App extends Component {
-  state = {
-    EITs: [],
+  constructor(props) {
+    super(props);
+    this.state = {
+      deleteSelected: false,
+    }
   }
-  removeEIT = index => {
-    const {EITs} = this.state
+
+  toggleDeleteSelected() {
     this.setState({
-      EITs: EITs.filter((EIT, i) =>{
-        return i !==index
-      })
-    })
+      deleteSelected:!this.state.deleteSelected,
+    });
   }
-  handleSubmit = EIT =>{
-    this.setState({ EITs: [...this.state.EITs, EIT]})
-  }
+
   render (){
     return(
       <div className="container">
@@ -31,7 +34,7 @@ class App extends Component {
             <FORM handleSubmit={this.handleSubmit}/>
           </div>
           <div className="col-md-auto">
-            <TABLE eitData ={this.state.EITs} removeEIT={this.removeEIT} />
+            <TABLE eitData ={this.state.EITs} />
           </div>
         </div>
       </div>
@@ -40,4 +43,8 @@ class App extends Component {
 
 }
 
-export default App;
+export default withTracker(()=>{
+  return {
+    EITS: Eits.find({}, {sort:{createdAt: -1}}).fetch(),
+  };
+})(App);

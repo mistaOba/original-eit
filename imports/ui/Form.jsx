@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Meteor } from 'meteor/meteor';
+import { Eits } from '../api/eits.js';
 
 class FORM extends Component{
   constructor(props){
@@ -10,22 +12,25 @@ class FORM extends Component{
       country:'',
       area:'',
       fact:'',
-      imageUrl:'',
     }
     this.state = this.initialState
   }
-  handleChange = event => {
-    const {name, value} = event.target 
+
+  handleChange =( event )=> {
+    const {name, value} = event.target;
     this.setState({
       [name]: value,
     })
   }
-  submitForm = () => {
-    this.props.handleSubmit(this.state)
-    this.setState(this.initialState)
+
+  submitForm = (event) => {
+    const {name, age, phone, country, area, fact} = this.state;
+    Meteor.call('eits.insert', name, age, phone, country, area, fact)
+    
   }
+  
   render (){
-    const {name, age, phone, country, area, fact, imageUrl} = this.state
+    const {name, age, phone, country, area, fact} = this.state
     return (
       <form className="form-group">
           <label>Name </label>
@@ -33,6 +38,7 @@ class FORM extends Component{
               className="form-control"
               type="text"
               name="name"
+              refs="name"
               placeholder= "EIT's Name"
               value={name}
               onChange={this.handleChange}
@@ -40,6 +46,7 @@ class FORM extends Component{
           <label>Age</label>
           <input
               type="text"
+              refs="age"
               name="age"
               className="form-control"
               value={age}
@@ -50,6 +57,7 @@ class FORM extends Component{
           <input
               type="text"
               className="form-control"
+              refs="country"
               name="country"
               value={country}
               placeholder ="Home country"
@@ -59,6 +67,7 @@ class FORM extends Component{
           <input
               type="text"
               className="form-control"
+              refs="phone"
               name="phone"
               value={phone}
               placeholder ="Phone Number"
@@ -67,6 +76,7 @@ class FORM extends Component{
           <label>Area of Interest</label>
           <input
               type="text"
+              refs="area"
               name="area"
               className="form-control"
               value={area}
@@ -76,6 +86,7 @@ class FORM extends Component{
           <label>Interesting Fact</label>
           <input
               type="text"
+              refs="fact"
               name="fact"
               className="form-control"
               value={fact}
