@@ -6,7 +6,7 @@ import { Eits } from '../api/eits.js';
 
 export default class EIT extends Component{
     toggleChecked(){
-        Meteor.call('eits.setChecked', this.props.eit._id, !this.props.eit.cecked)
+        Meteor.call('eits.setChecked', this.props.eit._id, !this.props.eit.checked)
     }
     deleteThisEit(){
         Meteor.call('eits.remove', this.props.eit._id)

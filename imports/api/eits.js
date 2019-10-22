@@ -21,7 +21,16 @@ Meteor.methods({
 
     },
     'eits.setChecked'(eitId, setChecked){
-        Eits.update(eitId, {checked: setChecked});
+        Eits.update(eitId, {
+            $set: {checked: setChecked},
+        });
+
+    },
+
+    'eits.deleteSelected'(){
+        const checkedEits = Eits.find({checked:true}).fetch();
+        checkedEits.map((eit) => Eits.remove(eit._id))
+
 
     }
 

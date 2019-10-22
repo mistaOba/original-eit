@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Meteor } from 'meteor/meteor';
-
+import EIT from './EITs'
 import { Eits } from '../api/eits';
 
 const TableHeader = () =>{
@@ -15,7 +15,7 @@ const TableHeader = () =>{
               <th scope="row">Phone Number</th>
               <th scope="row">Area of Interest</th>
               <th scope="row">Interesting Fact</th>
-              <th scope="row"><button className="btn btn-light">Delete Selected</button></th>
+              <th scope="row"><button className="btn btn-light" onClick={()=> Meteor.call('eits.deleteSelected')}>Delete Selected</button></th>
           </tr>
       </thead>
   )
@@ -28,6 +28,8 @@ const TableBody = props => {
               <td>
               <input
               type="checkbox"
+              checked = {row.checked}
+              onChange = {(event)=> Meteor.call('eits.setChecked', row._id, event.target.checked)}
               />
               </td>
               <td>{row.name}</td>
