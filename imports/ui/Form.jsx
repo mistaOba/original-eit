@@ -38,7 +38,7 @@ class FORM extends Component{
               className="form-control"
               type="text"
               name="name"
-              refs="name"
+              ref="name"
               placeholder= "EIT's Name"
               value={name}
               onChange={this.handleChange}
@@ -46,7 +46,7 @@ class FORM extends Component{
           <label>Age</label>
           <input
               type="text"
-              refs="age"
+              ref="age"
               name="age"
               className="form-control"
               value={age}
@@ -57,7 +57,7 @@ class FORM extends Component{
           <input
               type="text"
               className="form-control"
-              refs="country"
+              ref="country"
               name="country"
               value={country}
               placeholder ="Home country"
@@ -67,7 +67,7 @@ class FORM extends Component{
           <input
               type="text"
               className="form-control"
-              refs="phone"
+              ref="phone"
               name="phone"
               value={phone}
               placeholder ="Phone Number"
@@ -76,7 +76,7 @@ class FORM extends Component{
           <label>Area of Interest</label>
           <input
               type="text"
-              refs="area"
+              ref="area"
               name="area"
               className="form-control"
               value={area}
@@ -86,7 +86,7 @@ class FORM extends Component{
           <label>Interesting Fact</label>
           <input
               type="text"
-              refs="fact"
+              ref="fact"
               name="fact"
               className="form-control"
               value={fact}

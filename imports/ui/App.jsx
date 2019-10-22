@@ -1,10 +1,8 @@
 import React, {Component} from 'react';
-import ReactDOM from 'react-dom';
 import { withTracker } from 'meteor/react-meteor-data';
-import { Meteor } from 'meteor/meteor';
-import FORM from './Form.jsx';
-import TABLE from './Table.jsx';
-import EIT from './EITs.jsx'
+// import FORM from './Form.jsx';
+// import TABLE from './Table.jsx';
+import Nav from './Nav.jsx';
 import { Eits } from '../api/eits.js';
 
 class App extends Component {
@@ -24,19 +22,15 @@ class App extends Component {
   render (){
     return(
       <div className="container">
-        <nav className="nav">
-          <h2 className="nav-items"> EIT APP</h2>&nbsp;
-          <h2 className="nav-items">Welcome</h2>
-
-        </nav>
-        <div className="row">
+        <Nav />
+        {/* <div className="row">
           <div className="col">
             <FORM handleSubmit={this.handleSubmit}/>
           </div>
           <div className="col-md-auto">
             <TABLE eitData ={this.state.EITs} />
           </div>
-        </div>
+        </div> */}
       </div>
     )
   }

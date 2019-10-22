@@ -32,6 +32,23 @@ Meteor.methods({
         checkedEits.map((eit) => Eits.remove(eit._id))
 
 
+    },
+    'eits.edit'(eitId, newData){
+        Eits.update(eitId,{
+            $set: {
+                name: newData.name,
+                age: newData.age,
+                phone: newData.phone,
+                country: newData.country,
+                area: newData.area,
+                fact: newData.fact,
+                updatedAt: new Date()
+
+            }
+        }
+
+        )
+        
     }
 
 })
