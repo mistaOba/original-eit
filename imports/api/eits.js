@@ -13,7 +13,9 @@ Meteor.methods({
             country,
             area,
             fact,
-            createdAt: new Date()
+            createdAt: new Date(),
+            // owner: Meteor.userId(),           // _id of logged in user
+            // username: Meteor.user().username,  // username of logged in user
         })
     },
     'eits.remove'(eitId){
@@ -48,7 +50,7 @@ Meteor.methods({
         }
 
         )
-        
+        console.log(eitId)
     }
 
 })

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Eits } from '../api/eits.js';
 
 class FORM extends Component{
   constructor(props){
