@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Meteor } from 'meteor/meteor';
+import { Link } from "react-router-dom";
 
 class FORM extends Component{
   constructor(props){
@@ -11,6 +12,9 @@ class FORM extends Component{
       country:'',
       area:'',
       fact:'',
+      createdAt: '',
+      owner: '',           // _id of logged in user
+      username: '',  // username of logged in user
     }
     this.state = this.initialState
   }
@@ -23,14 +27,15 @@ class FORM extends Component{
   }
 
   submitForm = (event) => {
-    const {name, age, phone, country, area, fact} = this.state;
-    Meteor.call('eits.insert', name, age, phone, country, area, fact)
+    const {name, age, phone, country, area, fact, createdAt, owner, username} = this.state;
+    Meteor.call('eits.insert', name, age, phone, country, area, fact,createdAt, owner, username)
     
   }
   
   render (){
     const {name, age, phone, country, area, fact} = this.state
     return (
+      
       <form className="form-group">
           <label>Name </label>
           <input
@@ -93,7 +98,7 @@ class FORM extends Component{
               onChange={this.handleChange}
           />
           <br></br>
-          <input className="btn btn-success" type="button" value="Submit" onClick={this.submitForm} />
+          <Link to="/" className="btn btn-success" type="button" value="Submit" onClick={this.submitForm}>Submit</Link>
 
       </form>
   )

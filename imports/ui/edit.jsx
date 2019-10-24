@@ -15,6 +15,9 @@ class UpdateForm extends Component {
       country: '',
       area: '',
       fact: '',
+      updatedAt: '',
+      owner: '',           // _id of logged in user
+      username: '',  // username of logged in user
     }
     this.state = this.initialState
   }
@@ -44,6 +47,9 @@ class UpdateForm extends Component {
       country: country,
       area: area,
       fact: fact,
+      updatedAt: new Date(),
+      owner: Meteor.userId(),           // _id of logged in user
+      // username: Meteor.user().username,  // username of logged in user
     })
 
 

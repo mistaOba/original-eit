@@ -10,7 +10,6 @@ import {
     Route,
     Link
 } from "react-router-dom";
-import App from './App.jsx';
 import Home from './Home.jsx';
 class Nav extends Component {
     render() {
@@ -38,7 +37,7 @@ class Nav extends Component {
                         <form className="form-inline my-2 my-lg-0">
                             <input className="form-control mr-sm-2" type="search" placeholder="Search EIT by name" aria-label="Search" />
                             <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>&nbsp;
-                            <button className="btn btn-light my-2 my-sm-0" type="submit"><AccountsUIWrapper /></button>&nbsp;
+                            <AccountsUIWrapper />
                             
                         </form>
 
@@ -50,7 +49,7 @@ class Nav extends Component {
                         <TABLE />
                     </Route>
                     <Route path="/add">
-                        <FORM/>
+                        <FORM/>:
                     </Route>
                     <Route path="/edit/:id" component={UpdateForm} />
                         {/* <UpdateForm />

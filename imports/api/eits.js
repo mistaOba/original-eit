@@ -1,11 +1,14 @@
 import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
-// import { check } from 'meteor/check';
 
 export const Eits = new Mongo.Collection('eits');
 
 Meteor.methods({
-    'eits.insert'(name, age, phone, country, area, fact){
+    'eits.insert'(name, age, phone, country, area, fact) {
+        if (!this.userId) {
+            alert("You are not authorized to perform this task")
+            throw new Meteor.Error('not-authorized');
+        }
         Eits.insert({
             name,
             age,
@@ -14,37 +17,51 @@ Meteor.methods({
             area,
             fact,
             createdAt: new Date(),
-            // owner: Meteor.userId(),           // _id of logged in user
-            // username: Meteor.user().username,  // username of logged in user
+            owner: Meteor.userId(),           // _id of logged in user
+            username: Meteor.user().username,  // username of logged in user
         })
     },
-    'eits.remove'(eitId){
-        Eits.remove(eitId);
-
-    },
+    'eits.remove'(eitId) {
+        if (!this.userId) {
+            alert("You are not authorized to perform this task")
+                throw new Meteor.Error('not-authorized');
+              }
+            Eits.remove(eitId);
+    
+        },
     'eits.setChecked'(eitId, setChecked){
-        Eits.update(eitId, {
-            $set: {checked: setChecked},
-        });
+                    Eits.update(eitId, {
+                        $set: { checked: setChecked },
+                    });
 
-    },
-
+                },
+            
     'eits.deleteSelected'(){
-        const checkedEits = Eits.find({checked:true}).fetch();
-        checkedEits.map((eit) => Eits.remove(eit._id))
-
-
-    },
+        if (! this.userId) {
+            alert("You are not authorized to perform this task")
+            throw new Meteor.Error('not-authorized');
+              }
+        const checkedEits = Eits.find({checked: true}).fetch();
+                checkedEits.map((eit) => Eits.remove(eit._id))
+        
+        
+            },
     'eits.edit'(eitId, newData){
+        if (! this.userId) {
+            alert("You are not authorized to perform this task")
+                throw new Meteor.Error('not-authorized');
+              }
         Eits.update(eitId,{
-            $set: {
-                name: newData.name,
+                    $set: {
+                    name: newData.name,
                 age: newData.age,
                 phone: newData.phone,
                 country: newData.country,
                 area: newData.area,
                 fact: newData.fact,
-                updatedAt: new Date()
+                updatedAt: new Date(),
+                owner: Meteor.userId(),           // _id of logged in user
+                username: Meteor.user().username,  // username of logged in user
 
             }
         }

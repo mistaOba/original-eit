@@ -43,9 +43,12 @@ const TableBody = props => {
         <td>{row.fact}</td>
         <td>
 
-          <Link className="btn btn-info" to={`/edit/${row._id}`} onClick={()=>Meteor.call('eits.edit', row._id)}>Edit </Link>&nbsp;
+          <Link className="btn btn-info" to={`/edit/${row._id}`}>Edit </Link>&nbsp;
           <button className="btn btn-danger" onClick={() => Meteor.call('eits.remove', row._id)}>Delete</button>
         </td>
+        {/* <span className="text">
+          <strong>{row.username}</strong>
+        </span> */}
       </tr>
     )
   });
