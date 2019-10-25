@@ -3,6 +3,13 @@ import { Mongo } from 'meteor/mongo';
 
 export const Eits = new Mongo.Collection('eits');
 
+if (Meteor.isServer) {
+    // This code only runs on the server
+    Meteor.publish('eits', function tasksPublication() {
+      return Eits.find();
+    });
+  }
+
 Meteor.methods({
     'eits.insert'(name, age, phone, country, area, fact) {
         if (!this.userId) {
@@ -22,7 +29,8 @@ Meteor.methods({
         })
     },
     'eits.remove'(eitId) {
-        if (!this.userId) {
+        const eit = Eits.findOne(eitId);
+        if (eit.owner !== this.userId) {
             alert("You are not authorized to perform this task")
                 throw new Meteor.Error('not-authorized');
               }
@@ -37,7 +45,8 @@ Meteor.methods({
                 },
             
     'eits.deleteSelected'(){
-        if (! this.userId) {
+        const eit = Eits.findOne(eitId);
+        if (eit.owner !== this.userId) {
             alert("You are not authorized to perform this task")
             throw new Meteor.Error('not-authorized');
               }
@@ -47,7 +56,8 @@ Meteor.methods({
         
             },
     'eits.edit'(eitId, newData){
-        if (! this.userId) {
+        const eit = Eits.findOne(eitId);
+        if (eit.owner !== this.userId) {
             alert("You are not authorized to perform this task")
                 throw new Meteor.Error('not-authorized');
               }

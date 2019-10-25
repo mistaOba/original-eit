@@ -17,6 +17,7 @@ const TableHeader = () => {
         <th scope="row">Area of Interest</th>
         <th scope="row">Interesting Fact</th>
         <th scope="row"><button className="btn btn-light" onClick={() => Meteor.call('eits.deleteSelected')}>Delete Selected</button></th>
+        <th scope="row">Posted by</th>
       </tr>
     </thead>
   )
@@ -46,9 +47,9 @@ const TableBody = props => {
           <Link className="btn btn-info" to={`/edit/${row._id}`}>Edit </Link>&nbsp;
           <button className="btn btn-danger" onClick={() => Meteor.call('eits.remove', row._id)}>Delete</button>
         </td>
-        {/* <span className="text">
+        <span className="text">
           <strong>{row.username}</strong>
-        </span> */}
+        </span>
       </tr>
     )
   });
