@@ -6,10 +6,10 @@ class Home extends Component{
     render(){
         return(
             <div className="row">
-                <div className="col">
+                <div className="col-3">
                     <FORM />
                 </div>
-                <div className="col-md-auto">
+                <div className="col-md-8">
                     <TABLE  />
                 </div>
             </div>
