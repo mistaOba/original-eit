@@ -133,21 +133,21 @@ if (Meteor.isServer){
           Meteor.Error, '[not-authorized]')
         assert.equal(Eits.find().count(), 1);
       });
-      
-    //   it ("cannot edit someone else's EIT", () => {
-    //     Eits.update(eitId, {$set: { private: true} })
-    //     //Generate a random ID, representing a different users
-    //     const userId = Random.id()
-    //     const name = 'Lawna';
-    //     const age = 25;
-    //     const country = 'Liberia';
-    //     const owner = userId;
-    //     const update = Meteor.server.method_handlers['eits.edit'];
-    //     const invocation = {userId};
-    //     assert.throws(() => update.apply(invocation, [eitId, owner]),
-    //       Meteor.Error, "[not-authorized]")
-    //     assert.equal(Eits.find().count(), 1);
-    //   })
+
+      it ("cannot edit someone else's EIT", () => {
+        Eits.update(eitId, {$set: { private: true} })
+        //Generate a random ID, representing a different users
+        const userId = Random.id()
+        const name = 'Lawna';
+        const age = 25;
+        const country = 'Liberia';
+        const owner = userId;
+        const update = Meteor.server.method_handlers['eits.edit'];
+        const invocation = {userId};
+        assert.throws(() => update.apply(invocation, [eitId, owner]),
+          Meteor.Error, "[not-authorized]")
+        assert.equal(Eits.find().count(), 1);
+      })
       
     });
   })

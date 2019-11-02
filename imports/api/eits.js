@@ -21,9 +21,9 @@ Meteor.methods({
             age,
             country,
             createdAt: new Date(),
-            owner: Meteor.userId(),           // _id of logged in user
-            username: Meteor.user().username,  // username of logged in user
-        })
+            owner: this.userId,           // _id of logged in user
+            username: Meteor.users.findOne(this.userId).username,  // username of logged in user
+        });
     },
     'eits.remove'(eitId) {
         const eit = Eits.findOne(eitId);
@@ -59,14 +59,11 @@ Meteor.methods({
                     $set: {
                     name: newData.name,
                 age: newData.age,
-                phone: newData.phone,
                 country: newData.country,
-                area: newData.area,
-                fact: newData.fact,
                 updatedAt: new Date(),
-                owner: Meteor.userId(),           // _id of logged in user
-                username: Meteor.user().username,  // username of logged in user
-
+                owner: this.userId,           // _id of logged in user
+            username: Meteor.users.findOne(this.userId).username,  // username of logged in user
+            
             }
         }
 
