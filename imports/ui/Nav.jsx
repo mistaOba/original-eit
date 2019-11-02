@@ -34,12 +34,12 @@ class Nav extends Component {
                                 <Link to="/edit/:id" className="nav-link" href="#" tabIndex="-1" aria-disabled="false">Edit EIT</Link>
                             </li>
                         </ul>
-                        <form className="form-inline my-2 my-lg-0">
+                        {/* <form className="form-inline my-2 my-lg-0">
                             <input className="form-control mr-sm-2" type="search" placeholder="Search EIT by name" aria-label="Search" />
                             <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>&nbsp;
                             <AccountsUIWrapper />
                             
-                        </form>
+                        </form> */}
 
                     </div>
 

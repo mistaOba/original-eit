@@ -13,8 +13,8 @@ class UpdateForm extends Component {
       age: '',
       phone: '',
       country: '',
-      area: '',
-      fact: '',
+      // area: '',
+      // fact: '',
       updatedAt: '',
       owner: '',           // _id of logged in user
       username: '',  // username of logged in user
@@ -60,7 +60,7 @@ class UpdateForm extends Component {
 
     const eit = this.props.EIT
 
-    // const {name, age, phone, country, area, fact} = this.state
+    // const {name, age, phone, country} = this.state
     return (
       <form className="form-group">
         <label>Name </label>
@@ -103,7 +103,7 @@ class UpdateForm extends Component {
           placeholder="Phone Number"
           onChange={this.handleChange}
         />
-        <label>Area of Interest</label>
+        {/* <label>Area of Interest</label>
         <input
           type="text"
           ref="area"
@@ -122,7 +122,7 @@ class UpdateForm extends Component {
           defaultValue={eit ? eit.fact : ''}
           placeholder="Interesting Fact obout EIT"
           onChange={this.handleChange}
-        />
+        /> */}
         <br></br>
         <Link to="/home" className="btn btn-info" type="button" value="Update" onClick={this.submitForm}>Update</Link>
 

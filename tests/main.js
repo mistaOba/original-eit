@@ -1,9 +1,10 @@
 import assert from "assert";
+import "../imports/api/eits.tests.js"
 
-describe("am-lost", function () {
+describe("eit-original", function () {
   it("package.json has correct name", async function () {
     const { name } = await import("../package.json");
-    assert.strictEqual(name, "am-lost");
+    assert.strictEqual(name, "eit-original");
   });
 
   if (Meteor.isClient) {

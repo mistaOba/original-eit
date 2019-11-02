@@ -37,13 +37,13 @@ class FORM extends Component{
     return (
       
       <form className="form-group">
-          <label>Name </label>
+          <label>Full Name</label>
           <input
               className="form-control"
               type="text"
               name="name"
               ref="name"
-              placeholder= "EIT's Name"
+              placeholder= "Firstname Lastname"
               value={name}
               onChange={this.handleChange}
           />
@@ -54,7 +54,7 @@ class FORM extends Component{
               name="age"
               className="form-control"
               value={age}
-              placeholder ="Age of Eit"
+              placeholder ="24"
               onChange={this.handleChange}
           />
           <label>Country </label>
@@ -64,10 +64,10 @@ class FORM extends Component{
               ref="country"
               name="country"
               value={country}
-              placeholder ="Home country"
+              placeholder ="Nigeria"
               onChange={this.handleChange}
           />
-          <label>Phone Number</label>
+          {/* <label>Phone Number</label>
           <input
               type="text"
               className="form-control"
@@ -96,7 +96,7 @@ class FORM extends Component{
               value={fact}
               placeholder ="Interesting Fact obout EIT"
               onChange={this.handleChange}
-          />
+          /> */}
           <br></br>
           <Link to="/" className="btn btn-success" type="button" value="Submit" onClick={this.submitForm}>Submit</Link>
 

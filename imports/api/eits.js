@@ -11,18 +11,15 @@ if (Meteor.isServer) {
   }
 
 Meteor.methods({
-    'eits.insert'(name, age, phone, country, area, fact) {
+    'eits.insert'(name, age, country) {
         if (!this.userId) {
-            alert("You are not authorized to perform this task")
             throw new Meteor.Error('not-authorized');
         }
+
         Eits.insert({
             name,
             age,
-            phone,
             country,
-            area,
-            fact,
             createdAt: new Date(),
             owner: Meteor.userId(),           // _id of logged in user
             username: Meteor.user().username,  // username of logged in user
@@ -31,7 +28,6 @@ Meteor.methods({
     'eits.remove'(eitId) {
         const eit = Eits.findOne(eitId);
         if (eit.owner !== this.userId) {
-            alert("You are not authorized to perform this task")
                 throw new Meteor.Error('not-authorized');
               }
             Eits.remove(eitId);
@@ -47,7 +43,6 @@ Meteor.methods({
     'eits.deleteSelected'(){
         const eit = Eits.findOne(eitId);
         if (eit.owner !== this.userId) {
-            alert("You are not authorized to perform this task")
             throw new Meteor.Error('not-authorized');
               }
         const checkedEits = Eits.find({checked: true}).fetch();
@@ -58,7 +53,6 @@ Meteor.methods({
     'eits.edit'(eitId, newData){
         const eit = Eits.findOne(eitId);
         if (eit.owner !== this.userId) {
-            alert("You are not authorized to perform this task")
                 throw new Meteor.Error('not-authorized');
               }
         Eits.update(eitId,{

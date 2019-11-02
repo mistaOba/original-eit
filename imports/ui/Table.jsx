@@ -13,11 +13,11 @@ const TableHeader = () => {
         <th scope="row">Name</th>
         <th scope="row">Age</th>
         <th scope="row">Country</th>
-        <th scope="row">Phone Number</th>
+        {/* <th scope="row">Phone Number</th>
         <th scope="row">Area of Interest</th>
-        <th scope="row">Interesting Fact</th>
-        <th scope="row"><button className="btn btn-light" onClick={() => Meteor.call('eits.deleteSelected')}>Delete Selected</button></th>
+        <th scope="row">Interesting Fact</th> */}
         <th scope="row" >Posted by</th>
+        <th scope="row"><button className="btn btn-light" onClick={() => Meteor.call('eits.deleteSelected')}>Delete Selected</button></th>
       </tr>
     </thead>
   )
@@ -39,9 +39,9 @@ const TableBody = props => {
         <td>{row.name}</td>
         <td>{row.age}</td>
         <td>{row.country}</td>
-        <td>{row.phone}</td>
+        {/* <td>{row.phone}</td>
         <td>{row.area}</td>
-        <td>{row.fact}</td>
+        <td>{row.fact}</td> */}
         <td>
 
           <Link className="btn btn-info" to={`/edit/${row._id}`}>Edit </Link>&nbsp;
